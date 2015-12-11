@@ -2,10 +2,23 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-
   hit: ->
+    console.log(@)
     @add(@deck.pop())
     @last()
+    if !@isDealer
+      if @scores()[0]> 21 then alert('Dealer wins!')
+      if @scores()[0]== 21 then alert('Player wins!')
+    if @isDealer
+      if @scores()[0]> 21 then alert('Player wins!')
+      if @scores()[0]== 21 then alert('Dealer wins!')
+      if @scores()[0]< 17 then @hit()
+      #compare scores
+      
+  stand: ->
+      console.log(@models[0])
+      @models[0].flip()
+      @hit()      
 
 
   hasAce: -> @reduce (memo, card) ->

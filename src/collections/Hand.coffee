@@ -3,7 +3,6 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
   hit: ->
-    console.log(@)
     @add(@deck.pop())
     @last()
     if !@isDealer
@@ -13,10 +12,9 @@ class window.Hand extends Backbone.Collection
       if @scores()[0]> 21 then alert('Player wins!')
       if @scores()[0]== 21 then alert('Dealer wins!')
       if @scores()[0]< 17 then @hit()
-      #compare scores
+      if@scores()[0] > 17 then @trigger 'compare', @
       
   stand: ->
-      console.log(@models[0])
       @models[0].flip()
       @hit()      
 

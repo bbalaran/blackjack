@@ -6,17 +6,17 @@ class window.Hand extends Backbone.Collection
     @add(@deck.pop())
     @last()
     if !@isDealer
-      if @scores()[0]> 21 then alert('Dealer wins!')
-      if @scores()[0]== 21 then alert('Player wins!')
+      if @scores()[0]> 21 then @trigger 'outcome', 'Dealer Wins'
+      if @scores()[0]== 21 then @trigger 'outcome', 'Player Wins'
     if @isDealer
-      if @scores()[0]> 21 then alert('Player wins!')
-      if @scores()[0]== 21 then alert('Dealer wins!')
-      if @scores()[0]< 17 then @hit()
-      if@scores()[0] > 17 then @trigger 'compare', @
+      if @scores()[0]> 21 then @trigger 'outcome', 'Player Wins'
+      if @scores()[0]== 21 then @trigger 'outcome', 'Dealer Wins'
+      if @scores()[0]< 16 then @hit()
+      if@scores()[0] > 16 then @trigger 'compare'
       
   stand: ->
       @models[0].flip()
-      @hit()      
+      @hit()
 
 
   hasAce: -> @reduce (memo, card) ->

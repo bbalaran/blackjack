@@ -6,9 +6,11 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @get('dealerHand').on 'compare', @compareScore, @
-    
+
   compareScore: ->
     #console.log(@get('dealerHand').scores()[0])
     if @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
-      alert('Dealer wins!')
-    else alert('Player wins!')
+      @trigger 'outcome','Dealer Wins'
+    else if @get('dealerHand').scores()[0] == @get('playerHand').scores()[0]
+      @trigger 'outcome','Tie'
+    else @trigger 'outcome', 'Player Wins'

@@ -1,3 +1,8 @@
+.result-container{
+  /*display: none;*/
+  width:50%;
+  height:150px;
+}
 .card {
   float: left;
   border: solid 1px black;

@@ -27,8 +27,7 @@ class window.AppView extends Backbone.View
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
 
   showOutcome: (args) ->
-    #debugger;
-    console.log(@$el)
-    @$el
-      .append("<h> #{args} </h>")
+
+   
+    @$el.append("<h> #{args} </h>")
 

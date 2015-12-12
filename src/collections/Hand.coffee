@@ -7,12 +7,12 @@ class window.Hand extends Backbone.Collection
     @last()
     if !@isDealer
       if @scores()[0]> 21 then @trigger 'outcome', 'Dealer Wins'
-      if @scores()[0]== 21 then @trigger 'outcome', 'Player Wins'
-    if @isDealer
+      else if @scores()[0]== 21 then @trigger 'outcome', 'Player Wins'
+    else if @isDealer
       if @scores()[0]> 21 then @trigger 'outcome', 'Player Wins'
-      if @scores()[0]== 21 then @trigger 'outcome', 'Dealer Wins'
-      if @scores()[0]< 16 then @hit()
-      if@scores()[0] > 16 then @trigger 'compare'
+      else if @scores()[0]== 21 then @trigger 'outcome', 'Dealer Wins'
+      else if @scores()[0]< 17 then @hit()
+      else if@scores()[0] >= 17 then @trigger 'compare'
       
   stand: ->
       @models[0].flip()

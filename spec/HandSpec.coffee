@@ -3,18 +3,22 @@ assert = chai.assert
 describe 'outcomes', ->
   deck = null
   hand = null
+  game = null
 
   beforeEach ->
-    deck = new Deck()
-    hand = deck.dealPlayer()
-    dealer = deck.dealDealer()
+    # deck = new Deck()
+    game = {};
+    game.playerHand =  new Hand ([new Card({rank : 4, suit : 1}), new Card({rank : 3, suit : 1})])
+    game.dealerHand = new Hand ([new Card({rank : 4, suit : 1}), new Card({rank : 3, suit : 1})])
+
+
+    
+    
 
   #player should win at 21
-  describe 'player win', ->
-    it 'player should win when score is', ->
-      assert.strictEqual deck.length, 50
-      assert.strictEqual deck.last(), hand.hit()
-      assert.strictEqual deck.length, 49
+  describe 'Game tie', ->
+    it 'Game should result in tie', ->
+      game.dealerHand.stand();
 
   #player should lose over 21
 
